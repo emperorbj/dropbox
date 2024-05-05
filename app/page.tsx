@@ -2,8 +2,12 @@
 
 export default function Home() {
   return (
-    <main className=" flex justify-center items-center w-full h-screen">
-      <h1 className="bg-purple-500 p-[200px] text-center w-[90px] h-[80px]">Drop box</h1>
+    <main className=" w-full h-screen">
+      <h1 className=" dark:text-slate-300">Drop box</h1>
+      <p className="text-center font-bold text-3xl">Disclaimer</p>
+      <p className="text-lg text-center"> Please be informed that this application is just for educational and learning purposes
+        we have no affiliations with the official drop box LLC
+      </p>
     </main>
   );
 }
