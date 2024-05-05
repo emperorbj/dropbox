@@ -10,9 +10,12 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^5.0.6",
+    "execa": "^8.0.1",
     "next": "14.2.3",
+    "onetime": "^7.0.0",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "shadcn-ui": "^0.8.0"
   },
   "devDependencies": {
     "@types/node": "^20",
