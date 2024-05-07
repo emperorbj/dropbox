@@ -6,7 +6,7 @@ import { ThemeToggler } from './ThemeToggler';
 
 const Header = () => {
     return (
-        <header className='flex items-center justify-between'>
+        <header className='flex items-center justify-between py-[10px]'>
             <Link href="/" className='flex items-center gap-1'>
                 <div>
                     <Image src={DropLogo} alt='logobox' width={40} height={45}/>
