@@ -1,8 +1,10 @@
 "use client"
 import { cn } from '@/lib/utils';
+import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 import React from 'react';
 import { useState } from 'react';
-import Dropzone from 'react-dropzone'
+import Dropzone from 'react-dropzone';
+import { db } from '@/firebase';
 
 const DropzoneComponent = () => {
 
@@ -26,6 +28,15 @@ const DropzoneComponent = () => {
 
         setLoading(true);
 
+        // addDoc => users/user123/files
+        const docRef = await addDoc(collection(db, "files"),{
+            filename: selectedFile.name,
+            type: selectedFile.type,
+            size: selectedFile.size,
+            timestamp: serverTimestamp(),
+        })
+
+        
         // do what needs to be done...
 
         setLoading(false)
