@@ -1,15 +1,34 @@
 "use client"
 import { cn } from '@/lib/utils';
 import React from 'react';
+import { useState } from 'react';
 import Dropzone from 'react-dropzone'
 
 const DropzoneComponent = () => {
+
+    const [loading, setLoading] = useState(false);
+
     const onDrop = (acceptedFiles: File[]) =>{
         acceptedFiles.forEach((file) =>{
             const reader = new FileReader();
 
-            
+            reader.onabort = () => console.log("file reading was aborted");
+            reader.onerror = () => console.log("file reading was failed");
+            reader.onload = async () => {
+                await upLoadPost(file);
+            };
+            reader.readAsArrayBuffer(file);
         });
+    }
+
+    const upLoadPost = async (selectedFile: File) => {
+        if (loading) return;
+
+        setLoading(true);
+
+        // do what needs to be done...
+
+        setLoading(false)
     }
 
     // max file size 20mb 
