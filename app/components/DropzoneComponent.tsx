@@ -1,10 +1,11 @@
 "use client"
 import { cn } from '@/lib/utils';
-import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
+import { addDoc, collection, doc, serverTimestamp, updateDoc } from 'firebase/firestore';
 import React from 'react';
 import { useState } from 'react';
 import Dropzone from 'react-dropzone';
-import { db } from '@/firebase';
+import { db, storage } from '@/firebase';
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 
 const DropzoneComponent = () => {
 
@@ -29,14 +30,26 @@ const DropzoneComponent = () => {
         setLoading(true);
 
         // addDoc => users/user123/files
+        // Add file metadata to Firestore
         const docRef = await addDoc(collection(db, "files"),{
             filename: selectedFile.name,
             type: selectedFile.type,
             size: selectedFile.size,
             timestamp: serverTimestamp(),
-        })
+        });
 
-        
+        // Upload file to Storage
+        const fileRef = ref(storage, `files/${docRef.id}` );
+
+        uploadBytes(fileRef, selectedFile).then(async (snapshot) =>{
+             // Get download URL for the uploaded file
+            const downLoadURL = await getDownloadURL(fileRef);
+
+            // Update Firestore document with download URL
+            await updateDoc(doc(db, "files", docRef.id),{
+                downLoadURL: downLoadURL,
+            });
+        })
         // do what needs to be done...
 
         setLoading(false)
