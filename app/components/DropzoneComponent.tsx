@@ -60,7 +60,8 @@ const DropzoneComponent = () => {
 
     return (
         
-<Dropzone minSize={0} maxSize={maxSize} onDrop={acceptedFiles => console.log(acceptedFiles)}>
+        //minSize={0} maxSize={maxSize} onDrop={acceptedFiles => console.log(acceptedFiles)}
+<Dropzone minSize={0} maxSize={maxSize} onDrop={onDrop}>
     {({getRootProps, getInputProps,
         isDragActive,
         isDragAccept,
