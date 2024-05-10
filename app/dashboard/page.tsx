@@ -20,6 +20,9 @@ const Dashboard = async () => {
     return (
         <div>
         <DropzoneComponent/>
+        <section>
+            <h2>All files</h2>
+        </section>
         </div>
     )
 }
