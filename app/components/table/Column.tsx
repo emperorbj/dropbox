@@ -2,7 +2,8 @@
 import prettyBytes from 'pretty-bytes';
 import { FileType } from "@/typings"
 import { ColumnDef } from "@tanstack/react-table"
-import { FileIcon, defaultStyles } from 'react-file-icon';
+import { FileIcon, defaultStyles, DefaultExtensionType } from 'react-file-icon';
+import { COLOR_EXTENSION_MAP } from '@/constants';
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -18,14 +19,14 @@ export const columns: ColumnDef<FileType>[] = [
         return (
             <div className='w-10'>
                 <FileIcon 
-                extension={extension}
-                labelColor={COLOR_EXTENSION_MAP[extension]}
-                {...defaultStyles[extension]}
+                extension={extension as DefaultExtensionType}
+                labelColor={COLOR_EXTENSION_MAP[extension as DefaultExtensionType]}
+                {...defaultStyles[extension as DefaultExtensionType]}
                 />
             </div>
-        )
-        }
-    }
+            );
+        },
+    },
     {
         accessorKey: "filename",
         header: "filename",
