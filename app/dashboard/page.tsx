@@ -3,6 +3,7 @@ import DropzoneComponent from '../components/DropzoneComponent'
 import { collection, getDocs } from 'firebase/firestore'
 import { db } from '@/firebase'
 import { FileType } from '@/typings'
+import TableWrapper from '../components/table/TableWrapper'
 
 const Dashboard = async () => {
 
@@ -18,10 +19,14 @@ const Dashboard = async () => {
 
     console.log(skeletonFiles)
     return (
-        <div>
+        <div className='border-t'>
         <DropzoneComponent/>
-        <section>
-            <h2>All files</h2>
+        <section className='container space-y-5'>
+            <h2 className='font-bold'>All files</h2>
+            <div>
+                {/* Table wrapper */}
+                <TableWrapper skeletonFiles={skeletonFiles}/>
+            </div>
         </section>
         </div>
     )
