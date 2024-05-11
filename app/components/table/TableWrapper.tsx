@@ -8,6 +8,7 @@ import { columns } from "./Column";
 import { useCollection } from 'react-firebase-hooks/firestore';
 import { collection, orderBy, query } from 'firebase/firestore';
 import { db } from '@/firebase';
+import { Skeleton } from "@/components/ui/skeleton";
 
 const TableWrapper = ({skeletonFiles}: {skeletonFiles:FileType}) => {
 
@@ -34,12 +35,35 @@ const TableWrapper = ({skeletonFiles}: {skeletonFiles:FileType}) => {
         }))
 
         setInitialFiles(files)
-    },[docs])
+    },[docs]);
+
+        if(docs?.docs.length === undefined)
+            return (
+                <div className='flex flex-col'>
+                    <Button variant={"outline"} className='ml-auto w-36 h-10 mb-5'>
+                        <Skeleton className='h-5 w-full'/>
+                    </Button>
+
+                    <div className='border rounded-lg'>
+                        <div className='border-b h-12'/>
+                        {
+                            skeletonFiles.map((file)=>(
+                                <div key={file.id}
+                                className='flex items-center space-x-4 p-5 w-full'>
+                                    <Skeleton className='h-12 w-12'/>
+                                    <Skeleton className='h-12 w-full'/>
+                                </div>
+                            ))
+                        }
+                        </div>
+                </div>
+            );
+
 
 
     return (
-        <div>
-            <Button className='bg-blue-600 text-white text-md hover:bg-blue-400' 
+        <div className='flex flex-col space-y-5 pb-10'>
+            <Button className='bg-blue-600 w-fit ml-auto text-white text-md hover:bg-blue-400' 
             onClick={() => {
                 // implementing the sort functionality
                 setSort( sort === "desc" ? "asc" : "desc")
