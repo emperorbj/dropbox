@@ -15,6 +15,9 @@ import {
     TableHeader,
     TableRow,
     } from "@/components/ui/table"
+import { TrashIcon } from "lucide-react"
+import { FileType } from "@/typings"
+import { Button } from "@/components/ui/button"
 
     interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
@@ -64,12 +67,22 @@ import {
                         {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </TableCell>
                     ))}
+                {/* functionality for delete */}
+                    <TableCell key={(row.original as FileType).id}>
+                        <Button
+                        variant={"outline"}
+                        onClick={()=>{
+
+                        }}>
+                            <TrashIcon size={20}/>
+                        </Button>
+                    </TableCell>
                 </TableRow>
                 ))
             ) : (
                 <TableRow>
                 <TableCell colSpan={columns.length} className="h-24 text-center">
-                    No results.
+                    No file available here!!!
                 </TableCell>
                 </TableRow>
             )}
