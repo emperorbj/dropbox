@@ -19,6 +19,8 @@ import { TrashIcon } from "lucide-react"
 import { FileType } from "@/typings"
 import { Button } from "@/components/ui/button"
 import { useAppStore } from "@/store"
+import { ref } from "firebase/storage"
+import { storage } from "@/firebase"
 
     interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
@@ -36,9 +38,10 @@ import { useAppStore } from "@/store"
     });
 
     const [
-        setIsDeleteModalOpen,
         setFileId,
         setFilename,
+        setIsDeleteModalOpen,
+
     ] = useAppStore((state) => [
         state.setFileId,
         state.setFilename,
