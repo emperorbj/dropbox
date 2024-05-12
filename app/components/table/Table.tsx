@@ -32,7 +32,12 @@ import { Button } from "@/components/ui/button"
         data,
         columns,
         getCoreRowModel: getCoreRowModel(),
-    })
+    });
+
+    const openDeleteModal = (fileId: string) => {
+        setFileId(fileId);
+        setIsDeleteModalOpen(true);
+    };
 
     return (
         <div className="rounded-md border">
