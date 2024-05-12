@@ -1,3 +1,4 @@
+
 "use client"
 
 import { Copy } from "lucide-react"
@@ -30,9 +31,9 @@ import {
             state.setIsDeleteModalOpen,
         ]);
 
-        async function deleteFile(){
+        // async function deleteFile(){
             
-        }
+        // }
 
     return (
         <Dialog>

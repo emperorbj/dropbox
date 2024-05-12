@@ -24,12 +24,14 @@ import { storage } from "@/firebase"
 
     interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
-    data: TData[]
+    data: TData[];
+    onDelete: (fileId: string) => void;
     }
 
     export function DataTable<TData, TValue>({
     columns,
     data,
+    onDelete,
     }: DataTableProps<TData, TValue>) {
     const table = useReactTable({
         data,
@@ -91,7 +93,7 @@ import { storage } from "@/firebase"
                         <Button
                         variant={"outline"}
                         onClick={()=>{
-                            openDeleteModal((row.original as FileType).id)
+                            onDelete((row.original as FileType).id)
                         }}>
                             <TrashIcon size={20}/>
                         </Button>

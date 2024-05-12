@@ -63,7 +63,7 @@ const TableWrapper = ({skeletonFiles}: {skeletonFiles:FileType}) => {
 
     return (
         <div className='flex flex-col space-y-5 pb-10'>
-            <Button className='bg-blue-600 w-fit ml-auto text-white text-md hover:bg-blue-400' 
+            <Button className='bg-purple-600 w-fit ml-auto text-white text-md hover:bg-purple-400' 
             onClick={() => {
                 // implementing the sort functionality
                 setSort( sort === "desc" ? "asc" : "desc")

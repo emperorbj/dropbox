@@ -17,7 +17,7 @@ export default function Home() {
           Securely store your content, edit PDFs, share videos, 
           sign documents and track file engagement—without leaving Dropbox.
           </p>
-          <Link href='/dashboard' className='flex gap-2 cursor-pointer w-fit text-lg font-medium text-white rounded-md px-[25px] bg-blue-600 py-[15px]'>
+          <Link href='/dashboard' className='flex gap-2 cursor-pointer w-fit text-lg font-medium text-white rounded-md px-[25px] bg-purple-600 py-[15px]'>
             Try for free
             <ArrowRight className='mt-[4px]'/>
           </Link>
