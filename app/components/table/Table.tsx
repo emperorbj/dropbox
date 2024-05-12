@@ -18,6 +18,7 @@ import {
 import { TrashIcon } from "lucide-react"
 import { FileType } from "@/typings"
 import { Button } from "@/components/ui/button"
+import { useAppStore } from "@/store"
 
     interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
@@ -33,6 +34,16 @@ import { Button } from "@/components/ui/button"
         columns,
         getCoreRowModel: getCoreRowModel(),
     });
+
+    const [
+        setIsDeleteModalOpen,
+        setFileId,
+        setFilename,
+    ] = useAppStore((state) => [
+        state.setFileId,
+        state.setFilename,
+        state.setIsDeleteModalOpen,
+    ])
 
     const openDeleteModal = (fileId: string) => {
         setFileId(fileId);
@@ -77,7 +88,7 @@ import { Button } from "@/components/ui/button"
                         <Button
                         variant={"outline"}
                         onClick={()=>{
-
+                            openDeleteModal((row.original as FileType).id)
                         }}>
                             <TrashIcon size={20}/>
                         </Button>

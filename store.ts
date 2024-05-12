@@ -7,16 +7,16 @@ interface AppState{
     setFileId: (fileId: string) => void;
 
     filename:string;
-    setFileName: (filename: string) => void;
+    setFilename: (filename: string) => void;
 }
 
-export const useAppStore = create<AppState>(){(set) =>[{
-fileId:null,
-setFileId: (fileId: string) => set((state) => ({ fileId })),
+export const useAppStore = create<AppState>()((set) =>({
+    fileId:null,
+    setFileId: (fileId: string) => set((state) => ({ fileId })),
 
-filename:"",
-setFilename: (filename: string) => set((state) => ({ filename })),
+    filename:"",
+    setFilename: (filename: string) => set((state) => ({ filename })),
 
-isDeleteModalOpen:false,
-setIsDeleteModalOpen: (open) => set((state) => ({ setIsDeleteModalOpen: open })),
-}]}
+    isDeleteModalOpen:false,
+    setIsDeleteModalOpen: (open: boolean) => set((state) => ({ isDeleteModalOpen: open }))
+}))
